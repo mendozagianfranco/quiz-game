@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 export default function Home() {
     return (
         <>
-            <div className='flex flex-col justify-center items-center text-white text-center bg-linear-to-br from-blue-500 to-indigo-700  h-screen '>
+            <div className='flex flex-col justify-center items-center text-white text-center bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800  h-screen '>
                 <div className='px-6' >
                     <h1 className='text-5xl font-bold mb-4'>Quiz Game</h1>
                     <p className='text-lg mb-8 text-gray-100'> Metti alla prova le tue conoscenze!
