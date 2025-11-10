@@ -14,6 +14,9 @@ export default function Quiz() {
                         <button className='w-full p-4 rounded-xl border-2 border-blue-500 hover:bg-blue-100 hover:text-blue-700 transition cursor-pointer'>Opzione 4</button>
                     </div>
                 </div>
+                <button className='mt-6 text-red-500 font-semibold hover:text-white hover:bg-red-500 px-4 py-2 rounded-lg transition cursor-pointer'>
+                    Abbandona il quiz
+                </button>
             </div>
         </>
     );
