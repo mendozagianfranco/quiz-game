@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useState } from 'react';
 
 const QuizContext = createContext();
 
@@ -12,9 +12,5 @@ function QuizProvider({ children }) {
     );
 }
 
-function useQuizContext() {
-    const context = useContext(QuizContext);
-    return context;
-}
 
-export { QuizProvider, useQuizContext };
+export { QuizProvider, QuizContext };
