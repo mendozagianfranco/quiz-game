@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuizContext } from '../hooks/useQuizContext';
+import { useQuizContext } from '../context/useQuizContext';
 
 export default function Home() {
     const difficultyRef = useRef();
