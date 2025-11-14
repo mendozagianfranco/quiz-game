@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useQuizContext } from '../context/useQuizContext';
 import he from 'he';
+import { Link } from 'react-router-dom';
 
 export default function Quiz() {
     const { difficulty } = useQuizContext();
@@ -38,7 +39,7 @@ export default function Quiz() {
 
     if (!question) {
         return (
-            <div className='flex justify-center items-center h-screen text-white text-xl'>
+            <div className='flex justify-center items-center h-screen bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800 text-white text-xl'>
                 Caricamento domande...
             </div>
         );
@@ -78,9 +79,9 @@ export default function Quiz() {
                         )}
                     </div>
                 </div>
-                <button className='mt-6 text-red-500 font-semibold hover:text-white hover:bg-red-500 px-4 py-2 rounded-lg transition cursor-pointer'>
+                <Link to={'/'} className='mt-6 text-red-500 font-semibold hover:text-white hover:bg-red-500 px-4 py-2 rounded-lg transition cursor-pointer'>
                     Abbandona il quiz
-                </button>
+                </Link>
             </div>
         </>
     );
