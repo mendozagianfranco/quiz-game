@@ -6,6 +6,10 @@ export default function Quiz() {
     const { difficulty } = useQuizContext();
     const [questions, setQuestions] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [showResult, setShowResult] = useState(false);
+    const [shuffledAnswers, setShuffledAnswers] = useState([]);
+    const question = questions[currentIndex];
 
     useEffect(() => {
         fetch(`https://opentdb.com/api.php?amount=10&difficulty=${difficulty}&type=multiple`)
@@ -15,17 +19,22 @@ export default function Quiz() {
             });
     }, [difficulty]);
 
+    useEffect(() => {
+        if (question) {
+            const answers = [...question.incorrect_answers, question.correct_answer];
+            setShuffledAnswers(answers.sort(() => Math.random() - 0.5));
+        }
+    }, [question]);
 
     function handleResponse(answer) {
-        if (question.correct_answer === answer) {
-            console.log('corretto');
-        } else {
-            console.log('sbagliato');
-        }
-        setCurrentIndex(prev => prev + 1);
+        setSelectedAnswer(answer);
+        setShowResult(true);
+        setTimeout(() => {
+            setShowResult(false);
+            setSelectedAnswer(null);
+            setCurrentIndex(prev => prev + 1);
+        }, 1500);
     }
-
-    const question = questions[currentIndex];
 
     if (!question) {
         return (
@@ -44,13 +53,29 @@ export default function Quiz() {
                         <p className='text-lg text-gray-100 mb-8'>{he.decode(question.question)}</p>
                     </div>
                     <div className='flex flex-col gap-4 max-w-md'>
-                        {question.incorrect_answers.concat(question.correct_answer)
-                            .sort(() => Math.random() - 0.5)
-                            .map((answer, i) => (
-                                <button key={i} className='w-full p-4 rounded-xl border-2 border-blue-500 hover:bg-blue-100 hover:text-blue-700 transition cursor-pointer' onClick={() => handleResponse(answer)}>
+                        {shuffledAnswers.map((answer, i) => {
+                            const isCorrect = answer === question.correct_answer;
+                            const isWrong = selectedAnswer === answer && answer !== question.correct_answer;
+
+                            let colorClass = '';
+
+                            if (showResult) {
+                                if (isCorrect) colorClass = 'bg-green-500 text-white';
+                                else if (isWrong) colorClass = 'bg-red-500 text-white';
+                            }
+
+                            return (
+                                <button
+                                    key={i}
+                                    className={`w-full p-4 rounded-xl border-2 border-blue-500 transition cursor-pointer ${colorClass}`}
+                                    onClick={() => handleResponse(answer)}
+                                    disabled={showResult}
+                                >
                                     {he.decode(answer)}
                                 </button>
-                            ))}
+                            );
+                        }
+                        )}
                     </div>
                 </div>
                 <button className='mt-6 text-red-500 font-semibold hover:text-white hover:bg-red-500 px-4 py-2 rounded-lg transition cursor-pointer'>
