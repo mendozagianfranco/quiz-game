@@ -11,28 +11,37 @@ export default function Home() {
     }
 
     return (
-        <>
-            <div className='flex flex-col justify-center items-center text-white text-center bg-linear-to-br from-blue-600 via-blue-700 to-indigo-800  h-screen '>
-                <div className='px-6' >
-                    <h1 className='text-5xl font-bold mb-4'>Quiz Game</h1>
-                    <p className='text-lg mb-8 text-gray-100'> Metti alla prova le tue conoscenze!
-                        Rispondi a una serie di domande e scopri il tuo punteggio finale.
-                    </p>
+        <div className="min-h-screen flex items-center justify-center bg-zinc-950 text-zinc-200">
+            <div className="w-full max-w-xl px-8 py-12 bg-zinc-900 rounded-2xl border border-zinc-800 shadow-lg shadow-black/30">
 
-                    <div className='flex flex-col sm:flex-row gap-4 mb-6 justify-center'>
-                        <select ref={difficultyRef} className="px-4 py-2 rounded-lg border-2 border-white bg-white text-blue-600 font-semibold shadow-md transition">
-                            <option value={'easy'}>Facile</option>
-                            <option value={'medium'}>Medio</option>
-                            <option value={'hard'}>Difficile</option>
-                        </select>
-                    </div>
+                <h1 className="text-4xl font-semibold tracking-tight mb-4 text-zinc-100">
+                    Quiz Game
+                </h1>
+
+                <p className="text-zinc-400 mb-10 leading-relaxed">
+                    Metti alla prova le tue conoscenze.
+                    Rispondi a una serie di domande e scopri il tuo punteggio finale.
+                </p>
+
+                <div className="flex flex-col gap-6">
+
+                    <select
+                        ref={difficultyRef}
+                        className="px-4 py-3 rounded-xl bg-zinc-800 border border-zinc-700 text-zinc-200 focus:outline-none  focus:ring-2 focus:ring-zinc-600 transition">
+                        <option value={'easy'}>Facile</option>
+                        <option value={'medium'}>Medio</option>
+                        <option value={'hard'}>Difficile</option>
+                    </select>
+
                     <Link
                         to={'/quiz'}
-                        className='bg-white text-blue-600 font-semibold px-6 py-3 rounded-lg hover:bg-gray-300 transition'
                         onClick={handleStartQuiz}
-                    >Inizia il Quiz</Link>
+                        className="text-center px-6 py-3 rounded-xl  bg-zinc-200 text-zinc-900 font-medium hover:bg-zinc-300 transition-colors duration-200">
+                        Inizia il Quiz
+                    </Link>
+
                 </div>
             </div>
-        </>
+        </div>
     );
 }
