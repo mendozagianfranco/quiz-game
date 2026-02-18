@@ -4,21 +4,22 @@ import { useQuizContext } from '../context/useQuizContext';
 
 export default function Home() {
     const difficultyRef = useRef();
-    const { setDifficulty } = useQuizContext();
+    const { setDifficulty, startQuiz } = useQuizContext();
 
     function handleStartQuiz() {
         setDifficulty(difficultyRef.current.value);
+        startQuiz();
     }
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-zinc-950 text-zinc-200">
             <div className="w-full max-w-xl px-8 py-12 bg-zinc-900 rounded-2xl border border-zinc-800 shadow-lg shadow-black/30">
 
-                <h1 className="text-4xl font-semibold tracking-tight mb-4 text-zinc-100">
+                <h1 className="text-4xl text-center font-semibold tracking-tight mb-4 text-zinc-100">
                     Quiz Game
                 </h1>
 
-                <p className="text-zinc-400 mb-10 leading-relaxed">
+                <p className="text-zinc-400 mb-10 leading-relaxed text-center">
                     Metti alla prova le tue conoscenze.
                     Rispondi a una serie di domande e scopri il tuo punteggio finale.
                 </p>
