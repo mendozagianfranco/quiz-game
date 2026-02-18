@@ -7,15 +7,15 @@ import { QuizProvider } from './context/GlobalContext';
 function App() {
   return (
     <>
-      <QuizProvider>
-        <BrowserRouter>
+      <BrowserRouter>
+        <QuizProvider>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/quiz' element={<Quiz />} />
             <Route path='/score' element={<Score />} />
           </Routes>
-        </BrowserRouter>
-      </QuizProvider>
+        </QuizProvider>
+      </BrowserRouter>
     </>
   );
 }
