@@ -4,7 +4,7 @@ import he from 'he';
 import { Link } from 'react-router-dom';
 
 export default function Quiz() {
-    const { setScore, currentQuestion, currentIndex, nextQuestion, resetGame, loading } = useQuizContext();
+    const { setScore, currentQuestion, currentIndex, nextQuestion, resetGame, loading, TOTAL_QUESTION } = useQuizContext();
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [showResult, setShowResult] = useState(false);
     const [shuffledAnswers, setShuffledAnswers] = useState([]);
@@ -42,7 +42,7 @@ export default function Quiz() {
     if (loading || !currentQuestion) {
         return (
             <div className="flex justify-center items-center h-screen bg-zinc-950 text-zinc-400 text-lg">
-                Caricamento domande...
+                Loading questions...
             </div>
         );
     }
@@ -54,7 +54,7 @@ export default function Quiz() {
 
                 <div className="mb-10">
                     <h2 className="text-sm uppercase tracking-wider text-zinc-500 mb-3">
-                        Domanda {currentIndex + 1} di 10
+                        Question {currentIndex + 1} of {TOTAL_QUESTION}
                     </h2>
 
                     <p className="text-lg leading-relaxed text-zinc-100">
@@ -97,7 +97,7 @@ export default function Quiz() {
                 to={'/'}
                 onClick={resetGame}
                 className="mt-8 text-sm text-zinc-500 hover:text-zinc-300 transition">
-                Abbandona il quiz
+                Leave the quiz
             </Link>
 
         </div>

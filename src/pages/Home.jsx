@@ -20,8 +20,8 @@ export default function Home() {
                 </h1>
 
                 <p className="text-zinc-400 mb-10 leading-relaxed text-center">
-                    Metti alla prova le tue conoscenze.
-                    Rispondi a una serie di domande e scopri il tuo punteggio finale.
+                    Test your knowledge.
+                    Answer a series of questions and find out your final score.
                 </p>
 
                 <div className="flex flex-col gap-6">
@@ -29,16 +29,16 @@ export default function Home() {
                     <select
                         ref={difficultyRef}
                         className="px-4 py-3 rounded-xl bg-zinc-800 border border-zinc-700 text-zinc-200 focus:outline-none  focus:ring-2 focus:ring-zinc-600 transition">
-                        <option value={'easy'}>Facile</option>
-                        <option value={'medium'}>Medio</option>
-                        <option value={'hard'}>Difficile</option>
+                        <option value={'easy'}>Easy</option>
+                        <option value={'medium'}>Medium</option>
+                        <option value={'hard'}>Hard</option>
                     </select>
 
                     <Link
                         to={'/quiz'}
                         onClick={handleStartQuiz}
                         className="text-center px-6 py-3 rounded-xl  bg-zinc-200 text-zinc-900 font-medium hover:bg-zinc-300 transition-colors duration-200">
-                        Inizia il Quiz
+                        Start Quiz
                     </Link>
 
                 </div>
