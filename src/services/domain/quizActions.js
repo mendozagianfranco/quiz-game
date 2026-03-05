@@ -1,9 +1,9 @@
-export function startQuiz() { ({ type: 'START_QUIZ' }); }
+export function startQuiz() { return { type: 'START_QUIZ' }; }
 
-export function setQuestions(questions) { ({ type: 'SET_QUESTIONS', payload: questions }); }
+export function setQuestions(questions) { return { type: 'SET_QUESTIONS', payload: questions }; }
 
-export function answerQuestion(isCorrect) { dispatch({ type: 'ANSWER', payload: { isCorrect } }); }
+export function answerQuestion(isCorrect) { return { type: 'ANSWER', payload: { isCorrect } }; }
 
-export function nextQuestion() { ({ type: 'NEXT' }); }
+export function nextQuestion() { return { type: 'NEXT' }; }
 
-export function resetQuiz() { dispatch({ type: 'RESET' }); }
+export function resetQuiz() { return { type: 'RESET' }; }
