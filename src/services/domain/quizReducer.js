@@ -3,7 +3,6 @@ export const initialState = {
     questions: [],
     currentIndex: 0,
     score: 0,
-    difficulty: "easy"
 };
 
 
