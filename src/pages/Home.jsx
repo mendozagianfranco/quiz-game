@@ -1,14 +1,16 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuizContext } from '../context/useQuizContext';
+import { useQuiz } from '../context/useQuiz';
+import { fetchQuestions } from '../services/infrastructure/triviaApi';
 
 export default function Home() {
     const difficultyRef = useRef();
-    const { setDifficulty, startQuiz } = useQuizContext();
+    const { startQuiz, setQuestions } = useQuiz();
 
-    function handleStartQuiz() {
-        setDifficulty(difficultyRef.current.value);
+    async function handleStartQuiz() {
         startQuiz();
+        const questions = await fetchQuestions(difficultyRef.current.value);
+        setQuestions(questions);
     }
 
     return (
