@@ -7,7 +7,7 @@ function QuizProvider({ children }) {
     const quiz = useQuizGame();
 
     return (
-        <QuizContext.Provider value={{ quiz }}>
+        <QuizContext.Provider value={quiz}>
             {children}
         </QuizContext.Provider>
     );
