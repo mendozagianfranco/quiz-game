@@ -14,5 +14,9 @@ function generateId() {
 }
 
 function shuffle(questions) {
-    return questions.sort(() => Math.random() - 0.5);
+    for (let i = questions.length - 1; i >= 1; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [questions[i], questions[j]] = [questions[j], questions[i]];
+    }
+    return questions;
 }
