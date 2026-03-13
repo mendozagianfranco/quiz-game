@@ -5,7 +5,7 @@
 Quiz Game è un’applicazione web che permette all’utente di rispondere a una serie di domande a scelta multipla e ottenere un punteggio finale.  
 Il progetto è pensato per esercitare competenze su **React**, **React Router**, **Tailwind CSS** e **gestione dello stato globale**.
 
-## Funzionalità
+## Funzionalità implementate
 
 - Selezione del livello di difficoltà (Facile, Medio, Difficile)
 - Visualizzazione delle domande con risposte multiple
@@ -13,6 +13,15 @@ Il progetto è pensato per esercitare competenze su **React**, **React Router**,
 - Aggiornamento del punteggio in tempo reale
 - Pagina finale con punteggio e percentuale di risposte corrette
 - Possibilità di ripetere il quiz o tornare alla home
+- Timer per ogni domanda
+
+## Come funziona
+
+- L’utente seleziona la difficoltà e avvia il quiz
+- Le domande vengono recuperate tramite API (Open Trivia Database)
+- L’utente seleziona una risposta e il sistema evidenzia il risultato
+- Al termine del quiz viene mostrato il punteggio finale e un messaggio di valutazione
+- È possibile riprovare il quiz senza ricaricare la pagina
 
 ## Tecnologie utilizzate
 
@@ -73,17 +82,8 @@ npm run dev
 ```
 5. Apri l’applicazione nel browser all’indirizzo mostrato dal terminale (di solito `http://localhost:5173`)
 
-## Come funziona
-
-- L’utente seleziona la difficoltà e avvia il quiz
-- Le domande vengono recuperate tramite API (Open Trivia Database)
-- L’utente seleziona una risposta e il sistema evidenzia il risultato
-- Al termine del quiz viene mostrato il punteggio finale e un messaggio di valutazione
-- È possibile riprovare il quiz senza ricaricare la pagina
-
 ## Possibili miglioramenti futuri
 
-- Aggiungere timer per ogni domanda
 - Supportare domande true/false
 - Migliorare la UI con animazioni e transizioni
 
