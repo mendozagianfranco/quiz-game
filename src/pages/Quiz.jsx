@@ -1,45 +1,55 @@
 import { useEffect, useState } from 'react';
-import { useQuizContext } from '../context/useQuizContext';
+import { useQuiz } from '../context/useQuiz';
 import he from 'he';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Quiz() {
-    const { setScore, currentQuestion, currentIndex, nextQuestion, resetGame, loading, TOTAL_QUESTION } = useQuizContext();
+    const { state, resetQuiz, answerQuestion, nextQuestion } = useQuiz();
+    const navigate = useNavigate();
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [showResult, setShowResult] = useState(false);
-    const [shuffledAnswers, setShuffledAnswers] = useState([]);
 
-
+    let currentQuestion = state.questions ? state.questions[state.currentIndex] : null;
 
     useEffect(() => {
-        if (currentQuestion) {
-            const answers = [...currentQuestion.incorrect_answers, currentQuestion.correct_answer];
-            setShuffledAnswers(answers.sort(() => Math.random() - 0.5));
+        if (state.status === 'idle') {
+            navigate('/');
         }
-    }, [currentQuestion]);
+    }, [state.status]);
+
+    useEffect(() => {
+        let timeShowAnswer;
+        if (showResult) {
+            const isLast = state.currentIndex + 1 >= state.questions.length;
+
+            timeShowAnswer = setTimeout(() => {
+                if (!isLast) {
+                    setSelectedAnswer(null);
+                    setShowResult(false);
+                    nextQuestion();
+                } else {
+                    navigate('/score');
+                }
+            }, 1500);
+        }
+
+        return () => {
+            clearTimeout(timeShowAnswer);
+        };
+    }, [showResult]);
 
     function handleResponse(answer) {
         if (showResult) return;
 
-        const isCorrect = answer === currentQuestion.correct_answer;
+        const isCorrect = answer === currentQuestion.correctAnswer;
 
-        if (isCorrect) {
-            setScore(prev => prev + 1);
-        }
+        answerQuestion(isCorrect);
 
         setSelectedAnswer(answer);
         setShowResult(true);
-
-        setTimeout(() => {
-            let hasNext = nextQuestion();
-            if (hasNext) {
-                setSelectedAnswer(null);
-                setShowResult(false);
-            }
-        }, 1500);
     }
 
-    if (loading || !currentQuestion) {
+    if (state.status === 'loading' || !currentQuestion) {
         return (
             <div className="flex justify-center items-center h-screen bg-zinc-950 text-zinc-400 text-lg">
                 Loading questions...
@@ -54,7 +64,7 @@ export default function Quiz() {
 
                 <div className="mb-10">
                     <h2 className="text-sm uppercase tracking-wider text-zinc-500 mb-3">
-                        Question {currentIndex + 1} of {TOTAL_QUESTION}
+                        Question {state.currentIndex + 1} of {state.questions.length}
                     </h2>
 
                     <p className="text-lg leading-relaxed text-zinc-100">
@@ -63,8 +73,8 @@ export default function Quiz() {
                 </div>
 
                 <div className="flex flex-col gap-4">
-                    {shuffledAnswers.map((answer, i) => {
-                        const isCorrect = answer === currentQuestion.correct_answer;
+                    {currentQuestion.answers.map((answer, i) => {
+                        const isCorrect = answer === currentQuestion.correctAnswer;
                         const isWrong = selectedAnswer === answer && !isCorrect;
 
                         let stateClass = "bg-zinc-800 border border-zinc-700 hover:bg-zinc-700";
@@ -95,7 +105,7 @@ export default function Quiz() {
 
             <Link
                 to={'/'}
-                onClick={resetGame}
+                onClick={resetQuiz}
                 className="mt-8 text-sm text-zinc-500 hover:text-zinc-300 transition">
                 Leave the quiz
             </Link>
