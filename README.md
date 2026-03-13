@@ -1,6 +1,6 @@
 # Quiz Game
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-blue)](https://quiz-game-react-omega.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue)](https://quiz-game-delta-kohl.vercel.app)
 
 Quiz Game è un’applicazione web che permette all’utente di rispondere a una serie di domande a scelta multipla e ottenere un punteggio finale.  
 Il progetto è pensato per esercitare competenze su **React**, **React Router**, **Tailwind CSS** e **gestione dello stato globale**.
