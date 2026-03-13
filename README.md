@@ -1,5 +1,7 @@
 # Quiz Game
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue)](https://quiz-game-react-omega.vercel.app)
+
 Quiz Game è un’applicazione web che permette all’utente di rispondere a una serie di domande a scelta multipla e ottenere un punteggio finale.  
 Il progetto è pensato per esercitare competenze su **React**, **React Router**, **Tailwind CSS** e **gestione dello stato globale**.
 
@@ -19,6 +21,37 @@ Il progetto è pensato per esercitare competenze su **React**, **React Router**,
 - React Router DOM
 - Tailwind CSS
 - Fetch API per le domande da [Open Trivia Database](https://opentdb.com/api_config.php)
+
+## Struttura Progetto
+```
+src
+│   App.jsx
+│   index.css
+│   main.jsx
+│   
+├───assets
+├───components
+├───context
+│       QuizContext.jsx
+│       useQuiz.js
+│       
+├───hooks
+│       useQuizGame.js
+│       
+├───pages
+│       Home.jsx
+│       Quiz.jsx
+│       Score.jsx
+│       
+└───services
+    ├───domain
+    │       quizActions.js
+    │       quizReducer.js
+    │       transformQuestions.js
+    │       
+    └───infrastructure
+            triviaApi.js
+```
 
 ## Installazione e avvio
 
