@@ -10,6 +10,7 @@ export function useQuizGame() {
     const answerQuestion = (isCorrect) => dispatch(actions.answerQuestion(isCorrect));
     const nextQuestion = () => dispatch(actions.nextQuestion());
     const resetQuiz = () => dispatch(actions.resetQuiz());
+    const setError = (message) => dispatch(actions.setError(message));
 
     return {
         state,
@@ -17,6 +18,7 @@ export function useQuizGame() {
         setQuestions,
         answerQuestion,
         nextQuestion,
-        resetQuiz
+        resetQuiz,
+        setError
     };
 }

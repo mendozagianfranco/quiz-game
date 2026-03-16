@@ -6,11 +6,15 @@ import { fetchQuestions } from '../services/infrastructure/triviaApi';
 export default function Home() {
     const difficultyRef = useRef();
     const typeRef = useRef();
-    const { startQuiz, setQuestions } = useQuiz();
+    const { state, startQuiz, setQuestions, setError } = useQuiz();
 
     async function handleStartQuiz() {
         startQuiz();
         const questions = await fetchQuestions(difficultyRef.current.value, typeRef.current.value);
+        if (questions.error) {
+            setError(questions.message);
+            return;
+        }
         setQuestions(questions);
     }
 
@@ -58,7 +62,13 @@ export default function Home() {
                         className="text-center px-6 py-3 rounded-xl  bg-zinc-200 text-zinc-900 font-medium hover:bg-zinc-300 transition-colors duration-200">
                         Start Quiz
                     </Link>
-
+                    {state.status === 'error' && (
+                        <div className="flex items-center gap-3 mt-2 px-4 py-3 rounded-xl 
+                    bg-red-500/10 border border-red-500/30 
+                    text-red-400 text-sm">
+                            <p>{state.message}</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ export const initialState = {
     questions: [],
     currentIndex: 0,
     score: 0,
+    message: null
 };
 
 
@@ -37,6 +38,14 @@ export function reducer(state, action) {
         case 'RESET':
             {
                 return { ...initialState };
+            }
+        case 'SET_ERROR':
+            {
+                return {
+                    ...state,
+                    status: 'error',
+                    message: action.payload
+                };
             }
         default:
             {
