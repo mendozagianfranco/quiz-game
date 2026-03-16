@@ -5,11 +5,12 @@ import { fetchQuestions } from '../services/infrastructure/triviaApi';
 
 export default function Home() {
     const difficultyRef = useRef();
+    const typeRef = useRef();
     const { startQuiz, setQuestions } = useQuiz();
 
     async function handleStartQuiz() {
         startQuiz();
-        const questions = await fetchQuestions(difficultyRef.current.value);
+        const questions = await fetchQuestions(difficultyRef.current.value, typeRef.current.value);
         setQuestions(questions);
     }
 
@@ -28,13 +29,28 @@ export default function Home() {
 
                 <div className="flex flex-col gap-6">
 
-                    <select
-                        ref={difficultyRef}
-                        className="px-4 py-3 rounded-xl bg-zinc-800 border border-zinc-700 text-zinc-200 focus:outline-none  focus:ring-2 focus:ring-zinc-600 transition">
-                        <option value={'easy'}>Easy</option>
-                        <option value={'medium'}>Medium</option>
-                        <option value={'hard'}>Hard</option>
-                    </select>
+                    <div>
+                        <p>Select Difficulty</p>
+
+                        <select
+                            ref={difficultyRef}
+                            className="px-4 py-3 w-full rounded-xl bg-zinc-800 border border-zinc-700 text-zinc-200 focus:outline-none  focus:ring-2 focus:ring-zinc-600 transition">
+                            <option value={'easy'}>Easy</option>
+                            <option value={'medium'}>Medium</option>
+                            <option value={'hard'}>Hard</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <p>Select Type Quiz</p>
+
+                        <select
+                            ref={typeRef}
+                            className="px-4 py-3 w-full rounded-xl bg-zinc-800 border border-zinc-700 text-zinc-200 focus:outline-none  focus:ring-2 focus:ring-zinc-600 transition">
+                            <option value={'multiple'}>Multiple</option>
+                            <option value={'boolean'}>True / False</option>
+                        </select>
+                    </div>
 
                     <Link
                         to={'/quiz'}

@@ -2,7 +2,7 @@ export function transformQuestions(rawQuestions) {
     return rawQuestions.map(q => ({
         id: generateId(),
         question: q.question,
-        answers: shuffle([q.correct_answer, ...q.incorrect_answers]),
+        answers: q.type === 'boolean' ? [q.correct_answer, ...q.incorrect_answers] : shuffle([q.correct_answer, ...q.incorrect_answers]),
         correctAnswer: q.correct_answer,
         difficulty: q.difficulty,
         type: q.type,
