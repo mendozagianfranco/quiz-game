@@ -8,7 +8,7 @@ Il progetto è pensato per esercitare competenze su **React**, **React Router**,
 ## Funzionalità implementate
 
 - Selezione del livello di difficoltà (Facile, Medio, Difficile)
-- Visualizzazione delle domande con risposte multiple
+- Visualizzazione delle domande con risposte multiple o vero/falso
 - Evidenziazione della risposta corretta e sbagliata dopo la selezione
 - Aggiornamento del punteggio in tempo reale
 - Pagina finale con punteggio e percentuale di risposte corrette
@@ -84,7 +84,6 @@ npm run dev
 
 ## Possibili miglioramenti futuri
 
-- Supportare domande true/false
 - Migliorare la UI con animazioni e transizioni
 
 ## Licenza
